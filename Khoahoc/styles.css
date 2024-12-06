@@ -1,0 +1,232 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar-header h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa hai ảnh */
+}
+.sidebar-header img {
+    max-width: 100px; /* Giới hạn chiều rộng (tuỳ chỉnh) */
+    height: auto; /* Đảm bảo tỷ lệ ảnh */
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu > li {
+    margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.sidebar-menu a:hover {
+    background-color: #ddd;
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.main-header h2 {
+    font-size: 24px;
+}
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Notification Icon */
+.notification .bi-bell {
+    font-size: 24px; /* Tăng kích thước biểu tượng */
+    color: #333;     /* Màu sắc của biểu tượng */
+    cursor: pointer; /* Thay đổi con trỏ khi hover */
+}
+
+.notification .bi-bell:hover {
+    color: #007bff; /* Đổi màu khi hover */
+}
+
+/* User Menu */
+.user-menu {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Avatar */
+.user-menu .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: relative; /* Để cho chấm xanh có thể được căn đúng */
+}
+
+/* Chấm xanh dưới avatar */
+.user-menu .status-dot {
+    position: absolute;
+    bottom: 0;
+    right: -1;
+    width: 10px;
+    height: 10px;
+    background-color: green; /* Màu xanh của chấm */
+    border-radius: 50%;
+    border: 2px solid white; /* Để chấm có viền trắng */
+}
+
+/* User Info */
+.user-menu .user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-menu .user-name {
+    font-weight: bold;
+}
+
+.user-menu .user-role {
+    font-size: 12px;
+    color: #777;
+}
+
+.user-menu .arrow-down {
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    list-style: none;
+    padding: 10px 0;
+    display: none;
+    z-index: 100;
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f4f4f4;
+}
+
+/* Show dropdown menu */
+.dropdown-menu.show {
+    display: block;
+}
+
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    list-style: none;
+    padding: 10px 0;
+    display: none;
+    z-index: 100;
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f4f4f4;
+}
+
+/* Show dropdown menu */
+.dropdown-menu.show {
+    display: block;
+}
+.btn-add {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background-color: #0056b3;
+}
+
+/* Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f1f1f1;
+}

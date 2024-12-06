@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý tài khoản</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="script" href="script.js">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="#">Trang chủ</a>
+            </div>
+            <div class="sidebar-section">
+                <h3>CHỨC NĂNG CHÍNH</h3>
+                <ul>
+                    <li><a href="#">Khóa học trên Bkids</a></li>
+                    <li><a href="#">Tài liệu giảng dạy</a></li>
+                    <li><a href="#">Quản lý cuộc thi</a></li>
+                    <li><a href="#">Kho câu hỏi & Đề thi</a></li>
+                    <li><a href="#">Quản lý lớp học</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3>KHÁC</h3>
+                <ul>
+                    <li><a href="#">Cài đặt</a></li>
+                    <li><a href="#">Quyền hạn</a></li>
+                    <li><a href="#" class="active">Tài khoản</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main">
+            <div class="main-header">
+                <h1>QUẢN LÝ TÀI KHOẢN</h1>
+                <ul class="tabs">
+                    <li><a href="#" class="active">Tài khoản</a></li>
+                    <li><a href="#">Bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <div class="profile">
+                    <img src="image/avatar.png" alt="Avatar">
+                    <div class="profile-actions">
+                        <button class="btn" type="button">Tải ảnh lên</button>  
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-cailai" type="button">Cài lại</button>
+                    </div>     
+                </div>
+                <div class="account-info">
+                    <h2>Thông tin tài khoản</h2>
+                    <form>
+                        <p>
+                            <div class="name-input">
+                                <span class="label">Họ và tên</span>
+                                <input type="text" placeholder="Nhập họ và tên" value="Nguyễn Thành Thông">
+                            </div>
+                            <div class="name-input" style="background-color: rgb(247,247,247); border: 2px solid #d9d9d9;">
+                                <span class="label" style="background-color: rgb(247,247,247); border-radius: 5px;"  >Tên đăng nhập</span>
+                                <input type="text" value="abcxyz@gmail.com" readonly>
+                            </div>
+                        </p>
+                        <p>                     
+                            <div class="name-input">
+                                <span class="label">Email</span>
+                                <input type="text" placeholder="Nhập email" value="nguyenvana@example.com">
+                            </div>
+                            <div class="name-input">                            
+                                    <label class="label" for="role">Chức vụ</label>
+                                    <select id="role" class="dropdown">
+                                        <option value="teacher">Giáo viên</option>
+                                        <option value="student">Học viên</option>
+                                        <option value="principal">Hiệu trưởng</option>
+                                        <!-- Add more options as needed -->
+                                    </select>    
+                            </div>
+                        </p>
+                        <p>
+                            <div class="name-input">
+                                <span class="label">Số điện thoại</span>
+                                <input type="text" placeholder="Nhập số điện thoại" value="(+84) 123456789">
+                            </div>
+                        </p>
+                        <input type="submit" value="Gửi">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
