@@ -1,3 +1,18 @@
+// Chức năng chuyển sang hiển thị danh mục
+function showCategory() {
+    document.getElementById('categoryContainer').style.display = 'block';
+    document.getElementById('courseContainer').style.display = 'none';
+    renderCategoryTable();
+}
+
+// Chức năng chuyển sang hiển thị khóa học
+function showCourse() {
+    document.getElementById('categoryContainer').style.display = 'none';
+    document.getElementById('courseContainer').style.display = 'block';
+    renderCourseTable();
+}
+
+
 let data = [
     { id: 1, name: 'DANH MỤC 1', description: 'Tristique libero interdum sit molestie', status: 1, scope: 'Toàn hệ thống' },
     { id: 2, name: 'DANH MỤC 2', description: 'Elementum justo, cras proin molestie', status: 7, scope: 'DS Tài khoản' },
@@ -134,5 +149,92 @@ function copyRow(index) {
     renderTable();
     alert('Danh mục đã được sao chép!');
 }
+
+
+// Dữ liệu mẫu
+const courses = [
+    { id: 2112, name: "Học cùng Cây thuốc Bkids", description: "Giới thiệu về các loại cây thuốc và tác dụng của chúng." },
+    { id: 2113, name: "Ôn thi Kỳ II", description: "Ôn thi cuối kỳ môn Toán lớp 11." },
+    { id: 2114, name: "Ôn thi cuối kỳ", description: "Ôn thi cuối kỳ Nâng Cao cho Phụ Huynh yêu cầu." }
+];
+
+// Hàm hiển thị danh sách khóa học
+function renderCourseList() {
+    const courseList = document.getElementById("courseItems");
+    courseList.innerHTML = ""; // Clear the list before re-rendering
+
+    courses.forEach(course => {
+        const li = document.createElement("li");
+        li.classList.add("course-item");
+        li.innerHTML = `
+            <span>#${course.id} ${course.name}</span>
+            <div class="course-actions">
+                <button class="view-btn" onclick="viewCourse(${course.id})">Xem</button>
+                <button class="edit-btn" onclick="editCourse(${course.id})">Chỉnh sửa</button>
+                <button class="copy-btn" onclick="copyCourse(${course.id})">Sao chép</button>
+                <button class="delete-btn" onclick="deleteCourse(${course.id})">Xóa</button>
+            </div>
+        `;
+        courseList.appendChild(li);
+    });
+}
+
+// Hàm xem chi tiết khóa học
+function viewCourse(courseId) {
+    const course = courses.find(course => course.id === courseId);
+    if (course) {
+        alert(`Chi tiết khóa học: ${course.name}\nMô tả: ${course.description}`);
+    }
+}
+
+// Hàm chỉnh sửa khóa học
+function editCourse(courseId) {
+    const course = courses.find(course => course.id === courseId);
+    if (course) {
+        document.getElementById("course-name").value = course.name;
+        document.getElementById("course-desc").value = course.description;
+    }
+}
+
+// Hàm sao chép khóa học
+function copyCourse(courseId) {
+    const course = courses.find(course => course.id === courseId);
+    if (course) {
+        const newCourse = { ...course, id: courses.length + 1 };
+        courses.push(newCourse);
+        renderCourseList(); // Re-render the list
+    }
+}
+
+// Hàm xóa khóa học
+function deleteCourse(courseId) {
+    const index = courses.findIndex(course => course.id === courseId);
+    if (index !== -1) {
+        courses.splice(index, 1); // Remove the course
+        renderCourseList(); // Re-render the list
+    }
+}
+
+// Hàm xử lý form chỉnh sửa
+document.getElementById("courseForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const courseName = document.getElementById("course-name").value;
+    const courseDesc = document.getElementById("course-desc").value;
+
+    // Giả sử bạn muốn chỉnh sửa khóa học đầu tiên trong danh sách (có thể điều chỉnh theo ID nếu cần)
+    courses[0].name = courseName;
+    courses[0].description = courseDesc;
+
+    renderCourseList(); // Re-render the list
+});
+
+// Hiển thị danh sách khóa học ngay khi tải trang
+window.onload = renderCourseList;
+
+
 // Initial render
 renderTable();
+
+
+

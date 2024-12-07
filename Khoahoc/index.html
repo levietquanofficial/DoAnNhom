@@ -10,128 +10,124 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div>
-                    <img src="image/Centers.png" alt="">
-                    <img src="image/HifivePLUS.png" alt="">
+
+    <header class="main-header">
+        <h2></h2>
+        <div class="header-right">
+            <div class="notification">
+                <i class="bi bi-bell"></i>
+            </div>
+            <div class="user-menu">
+                <img src="image/avatar.png" alt="Avatar" class="avatar">
+                <span class="status-dot"></span> <!-- Chấm xanh -->
+                <div class="user-info">
+                    <span class="user-name">Nguyễn Thanh Tùng</span>
+                    <span class="user-role">Học viên</span>
+                </div>
+                <i class="arrow-down" onclick="toggleMenu()">▼</i>
+                <ul class="dropdown-menu" id="dropdownMenu">
+                    <li><a href="#">Đăng xuất</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div>
+                <img src="image/Centers.png" alt="">
+                <img src="image/HifivePLUS.png" alt="">
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" onclick="showCategory()">Khóa học trên Bkids</a>
+                <ul>
+                    <div class="menu">
+                        <a id="categoryMenu" onclick="showCategory()">Danh mục khóa học</a>
+                        <a id="courseMenu" onclick="showCourse()">Khóa học</a>
+                        <a href="#">Người dùng</a>
+                    </div>
+                </ul>
+            </li>
+            <li><a href="#">Tài liệu giảng dạy</a></li>
+            <li><a href="#">Quản lý cuộc thi</a></li>
+            <li><a href="#">Kho câu hỏi & Đề thi</a></li>
+            <li><a href="#">Quản lý lớp học</a></li>
+            <li><a href="#">Cài đặt</a></li>
+            <li><a href="#">Quyền hạn</a></li>
+            <li><a href="#">Tài khoản</a></li>
+        </ul>
+    </aside>
+    
+    <div class="main-content-container">
+        <div class="container" id="categoryContainer">
+            <!-- Main Content for Category -->
+            <main class="main-content">
+                <table class="data-table">
+                    <button onclick="addNewRow()">Thêm mới</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>TÊN DANH MỤC</th>
+                                <th>MÔ TẢ</th>
+                                <th>SỐ KHÓA HỌC</th>
+                                <th>CHIA SẺ</th>
+                                <th>HOẠT ĐỘNG</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataTable">
+                            <!-- Rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </table>
+            </main>
+        </div>
+    
+        <div class="container" id="courseContainer" style="display:none;">
+            <div class="course-container">
+                <div class="course-details">
+                    <h1>HỌC CÙNG CÂY THUỐC BKIDS</h1>
+                    <span>#BKIDS001</span>
+                    <div class="status">
+                        <span class="status-free">Miễn phí</span>
+                    </div>
+                    <div class="details">
+                        <p><strong>Thuộc danh mục:</strong> DANNH MỤC 1</p>
+                        <p><strong>Ngày bắt đầu:</strong> 20/07/2022</p>
+                        <p><strong>Toán tư duy:</strong> Có</p>
+                        <p><strong>Học cùng Giới viên:</strong> Không</p>
+                        <p><strong>Phí giảng dạy:</strong> Miễn phí</p>
+                        <p><strong>Lớp tham gia:</strong> Mầm non, Lớp 1, Lớp 2, Lớp 3</p>
+                    </div>
+                    <div class="edit-buttons">
+                        <button class="edit-btn" onclick="editCourse()">Chỉnh sửa</button>
+                        <button class="delete-btn" onclick="deleteCourse()">Xóa</button>
+                    </div>
+                </div>
+            
+                <div class="course-list">
+                    <h3>Chủ đề khóa học</h3>
+                    <ul class="course-items" id="courseItems">
+                        <!-- Dynamic course items will be inserted here -->
+                    </ul>
+                </div>
+            
+                <div class="course-edit">
+                    <h3>Chỉnh sửa chủ đề</h3>
+                    <form id="courseForm">
+                        <label for="course-name">Chủ đề:</label>
+                        <input type="text" id="course-name" value="Ôn thi cuối kỳ Nâng Cao cho Phụ Huynh yêu cầu.">
+            
+                        <label for="course-desc">Mô tả:</label>
+                        <textarea id="course-desc" placeholder="Nhập thông tin mô tả"></textarea>
+            
+                        <button type="submit" class="save-btn">Chỉnh sửa</button>
+                        <button type="button" class="delete-btn" onclick="deleteCourse()">Xóa</button>
+                    </form>
                 </div>
             </div>
-            <ul class="sidebar-menu">
-                <li><a href="#">Khóa học trên Bkids</a>
-                    <ul>
-                        <li><a href="#">Danh mục khóa học</a></li>
-                        <li><a href="#">Khóa học</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Tài liệu giảng dạy</a></li>
-                <li><a href="#">Quản lý cuộc thi</a></li>
-                <li><a href="#">Kho câu hỏi & Đề thi</a></li>
-                <li><a href="#">Quản lý lớp học</a></li>
-                <li><a href="#">Cài đặt</a></li>
-                <li><a href="#">Quyền hạn</a></li>
-                <li><a href="#">Tài khoản</a></li>
-            </ul>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="main-header">
-                <h2>Danh mục khóa học</h2>
-                <div class="header-right">
-                    <div class="notification">
-                        <i class="bi bi-bell"></i>
-                    </div>
-                    <div class="user-menu">
-                        <img src="image/avatar.png" alt="Avatar" class="avatar">
-                        <span class="status-dot"></span> <!-- Chấm xanh -->
-                        <div class="user-info">
-                            <span class="user-name">Nguyễn Thanh Tùng</span>
-                            <span class="user-role">Học viên</span>
-                        </div>
-                        <i class="arrow-down" onclick="toggleMenu()">▼</i>
-                        <ul class="dropdown-menu" id="dropdownMenu">
-                            <li><a href="#">Đăng xuất</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </header>
-            <table class="data-table">
-                <!-- <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên danh mục</th>
-                        <th>Mô tả</th>
-                        <th>Số khóa học</th>
-                        <th>Chia sẻ</th>
-                        <th>Hoạt động</th>
-                    </tr>
-                </thead> -->
-                <h1>Quản lý danh mục</h1>
-                <button onclick="addNewRow()">Thêm mới</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>TÊN DANH MỤC</th>
-                            <th>MÔ TẢ</th>
-                            <th>SỐ KHÓA HỌC</th>
-                            <th>CHIA SẺ</th>
-                            <th>HOẠT ĐỘNG</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dataTable">
-                        <!-- Rows will be dynamically added here -->
-                    </tbody>
-                </table>
-            
-                <!-- Form chỉnh sửa/thêm mới -->
-                <div id="editForm" style="display: none; margin-top: 20px;">
-                    <h2 id="formTitle">Thêm danh mục</h2>
-                    <label>Tên danh mục: <input type="text" id="name" /></label><br>
-                    <label>Mô tả: <input type="text" id="description" /></label><br>
-                    <label>Trạng thái:
-                        <select id="status">
-                            <option value="1">Kích hoạt</option>
-                            <option value="0">Không kích hoạt</option>
-                        </select>
-                    </label><br>
-                    <label>Phạm vi:
-                        <select id="scope">
-                            <option value="Toàn hệ thống" style="color: aqua;;">Toàn hệ thống</option>
-                            <option value="Phòng ban">Phòng ban</option>
-                            <option value="Cá nhân">Cá nhân</option>
-                        </select>
-                    </label><br>
-                    <button onclick="saveRow()">Lưu</button>
-                    <button onclick="cancelEdit()">Hủy</button>
-                </div>
-                <!-- Form chỉnh sửa/thêm mới -->
-                <div id="editForm" style="display: none; margin-top: 20px;">
-                    <h2 id="formTitle">Thêm danh mục</h2>
-                    <label>Tên danh mục: <input type="text" id="name" /></label><br>
-                    <label>Mô tả: <input type="text" id="description" /></label><br>
-                    <label>Trạng thái:
-                        <select id="status">
-                            <option value="1">Kích hoạt</option>
-                            <option value="0">Không kích hoạt</option>
-                        </select>
-                    </label><br>
-                    <label>Phạm vi:
-                        <select id="scope">
-                            <option value="Toàn hệ thống">Toàn hệ thống</option>
-                            <option value="Phòng ban">Phòng ban</option>
-                            <option value="Cá nhân">Cá nhân</option>
-                        </select>
-                    </label><br>
-                    <button onclick="saveRow()">Lưu</button>
-                    <button onclick="cancelEdit()">Hủy</button>
-                </div>
-                <script src="script.js"></script>
-            </table>
-        </main>
+        </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
