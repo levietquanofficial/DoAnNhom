@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài liệu giảng dạy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="script" href="script.js">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <h2></h2>
+        <div class="header-right">
+            <div class="notification">
+                <i class="bi bi-bell"></i>
+            </div>
+            <div class="user-menu">
+                <img src="image/avatar.png" alt="Avatar" class="avatar">
+                <span class="status-dot"></span> <!-- Chấm xanh -->
+                <div class="user-info">
+                    <span class="user-name">Ravenn</span>
+                    <span class="user-role">Đại Lý</span>
+                </div>
+                <i class="arrow-down" onclick="toggleMenu()">▼</i>
+                <ul class="dropdown-menu" id="dropdownMenu">
+                    <li><a href="#">Đăng xuất</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div>
+                <img src="/img/logo_centers.png" alt="">
+                <img src="img/logo_plus.png" alt="">
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" onclick="showCategory()">Khóa học trên Bkids</a>
+                <ul>
+                    <div class="menu">
+                        <a id="categoryMenu" onclick="">Danh mục khóa học</a>
+                        <a id="courseMenu" onclick="">Khóa học</a>
+                        <a href="#">Người dùng</a>
+                    </div>
+                </ul>
+            </li>
+            <li><a href="#" onclick="showCategory()">Tài liệu giảng dạy</a>
+                <ul>
+                    <div class="menu">
+                        <a id="categoryMenu" onclick="showCategory()">Danh mục tài liệu</a>
+                        <a id="courseMenu" onclick="showCourse()">Kho tài liệu</a>
+                    </div>
+                </ul>
+            </li>
+            <li><a href="#">Quản lý cuộc thi</a></li>
+            <li><a href="#">Kho câu hỏi & Đề thi</a></li>
+            <li><a href="#">Quản lý lớp học</a></li>
+            <li><a href="#">Cài đặt</a></li>
+            <li><a href="#">Quyền hạn</a></li>
+            <li><a href="#">Tài khoản</a></li>
+        </ul>
+    </aside>
+
+    <div class="main-content-container">
+        <div class="container" id="categoryContainer">
+            <!-- Main Content for Category -->
+            <main class="main-content">
+                <table class="data-table">
+                    <div class="trai">
+                        <input class="tkiem" type="search" name="" id="" placeholder="Tìm kiếm">
+                        <div class="danhmuc">
+                            <select name="" id="" class="dm1">
+                                <a href="">
+                                    <option value="all">Tất cả các danh mục</option>
+                                </a>
+                                <a href="">
+                                    <option value="all1">Danh mục 1</option>
+                                </a>
+                                <a href="">
+                                    <option value="all2">Danh mục 2</option>
+                                </a>
+                                <a href="">
+                                    <option value="all3">Danh mục 3</option>
+                                </a>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="addNewRow()">Thêm</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>TÊN DANH MỤC</th>
+                                <th>MÔ TẢ</th>
+                                <th>CHIA SẺ</th>
+                                <th>HOẠT ĐỘNG</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataTable">
+                            <!-- Rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </table>
+            </main>
+        </div>
+        <div class="container" id="courseContainer" style="display:none;">
+            <div class="course-container">
+                <div class="course-details">
+                    <h1>Kho tài liệu 1</h1>
+                    <span>#BKIDS001</span>
+                    <div class="status">
+                        <span class="status-free">Miễn phí</span>
+                    </div>
+                    <div class="details">
+                        <p><strong>Danh mục:</strong> DANH MỤC 1</p>
+                        <p><strong>Ngày bắt đầu:</strong> 20/07/2022</p>
+                        <p><strong>Môn học:</strong>Hóa học</p>
+                        <!-- <p><strong>Phí giảng dạy:</strong> Miễn phí</p> -->
+                        <!-- <p><strong>Lớp tham gia:</strong> Mầm non, Lớp 1, Lớp 2, Lớp 3</p> -->
+                    </div>
+                    <div class="edit-buttons">
+                        <button class="edit-btn" onclick="editCourse()">Chỉnh sửa</button>
+                        <button class="delete-btn" onclick="deleteCourse()">Xóa</button>
+                    </div>
+                </div>
+            
+                <div class="course-list">
+                    <h3>Chủ đề danh mục</h3>
+                    <ul class="course-items" id="courseItems">
+                        <!-- Dynamic course items will be inserted here -->
+                    </ul>
+                </div>
+            
+                <div class="course-edit">
+                    <h3>Chỉnh sửa chủ đề</h3>
+                    <form id="courseForm">
+                        <label for="course-name">Chủ đề:</label>
+                        <input type="text" id="course-name" value="Danh mục tài liệu 3.">
+            
+                        <label for="course-desc">Mô tả:</label>
+                        <textarea id="course-desc" placeholder="Nhập thông tin mô tả"></textarea>
+            
+                        <button type="submit" class="save-btn">Chỉnh sửa</button>
+                        <button type="button" class="delete-btn" onclick="deleteCourse()">Xóa</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
