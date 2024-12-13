@@ -1,0 +1,422 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Web Page
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <script>
+    // Dữ liệu mẫu ban đầu
+    let data = [
+      { id: 1, name: "Danh mục câu hỏi test", grade: "Mầm non", weeks: 2, share: "Toàn hệ thống" },
+      { id: 2, name: "Danh mục câu hỏi test", grade: "Lớp 1", weeks: 2, share: "Không chia sẻ" },
+      { id: 3, name: "Danh mục câu hỏi test", grade: "Lớp 2", weeks: 2, share: "Chia sẻ" },
+      { id: 4, name: "Danh mục câu hỏi test", grade: "Mầm non", weeks: 2, share: "Toàn hệ thống" },
+      { id: 5, name: "Danh mục câu hỏi test", grade: "Lớp 3", weeks: 2, share: "Toàn hệ thống" },
+      { id: 6, name: "Danh mục câu hỏi test", grade: "Lớp 4", weeks: 2, share: "Toàn hệ thống" },
+      { id: 7, name: "Danh mục câu hỏi test", grade: "Lớp 5", weeks: 2, share: "Toàn hệ thống" },
+    ];
+  
+    // Hiển thị danh sách dữ liệu lên bảng
+    const renderTable = (data) => {
+      const tbody = document.querySelector("tbody");
+      tbody.innerHTML = ""; // Xóa nội dung cũ
+      data.forEach((item, index) => {
+        const row = `
+          <tr>
+            <td class="py-2 px-4 border-b">${index + 1}</td>
+            <td class="py-2 px-4 border-b">${item.name}</td>
+            <td class="py-2 px-4 border-b">${item.grade}</td>
+            <td class="py-2 px-4 border-b">${item.weeks}</td>
+            <td class="py-2 px-4 border-b text-${item.share === "Toàn hệ thống" ? "green-500" : item.share === "Chia sẻ" ? "orange-500" : "red-500"}">
+              ${item.share}
+            </td>
+            <td class="py-2 px-4 border-b">
+              <i class="fas fa-edit text-gray-500 mr-2 cursor-pointer"></i>
+              <i class="fas fa-trash text-gray-500 cursor-pointer" onclick="deleteItem(${item.id})"></i>
+            </td>
+          </tr>
+        `;
+        tbody.insertAdjacentHTML("beforeend", row);
+      });
+    };
+  
+    // Xóa mục
+    const deleteItem = (id) => {
+      data = data.filter(item => item.id !== id); // Loại bỏ mục khỏi mảng dữ liệu
+      renderTable(data); // Cập nhật bảng
+    };
+  
+    // Tìm kiếm danh sách
+    const search = () => {
+      const query = document.querySelector('input[placeholder="Tìm kiếm"]').value.toLowerCase();
+      const filteredData = data.filter(item =>
+        item.name.toLowerCase().includes(query) || item.grade.toLowerCase().includes(query)
+      );
+      renderTable(filteredData);
+    };
+  
+    // Thêm mục mới
+    const addItem = () => {
+      const newItem = {
+        id: data.length > 0 ? data[data.length - 1].id + 1 : 1, // Tự động tăng ID
+        name: "Danh mục mới",
+        grade: "Lớp 6",
+        weeks: 1,
+        share: "Không chia sẻ",
+      };
+      data.push(newItem); // Thêm mục mới vào mảng
+      renderTable(data); // Cập nhật bảng
+    };
+  
+    // Khởi tạo sự kiện
+    document.addEventListener("DOMContentLoaded", () => {
+      // Hiển thị dữ liệu lần đầu
+      renderTable(data);
+  
+      // Gán sự kiện tìm kiếm
+      document.querySelector('input[placeholder="Tìm kiếm"]').addEventListener("input", search);
+  
+      // Gán sự kiện cho nút "Thêm"
+      document.querySelector("button.bg-orange-500").addEventListener("click", addItem);
+    });
+  </script>
+  
+  
+ <body class="bg-gray-100 font-sans">
+  <div class="flex">
+   <!-- Sidebar -->
+   <div class="w-1/5 bg-white h-screen p-4">
+    <div class="flex items-center mb-6">
+     <img alt="Logo" class="mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/9DkJHPMr6ErDJBrcWKsWYIK2RBD5N9G9oJdglWN6Te8nSj7JA.jpg" width="40"/>
+     <span class="font-bold text-lg">
+      B. Centers
+     </span>
+    </div>
+    <ul>
+     <li class="mb-4">
+      <a class="flex items-center text-orange-500" href="#">
+       <i class="fas fa-home mr-2">
+       </i>
+       <span>
+        Trang chủ
+       </span>
+      </a>
+     </li>
+     <li class="mb-4">
+      <a class="flex items-center text-gray-700" href="#">
+       <i class="fas fa-book mr-2">
+       </i>
+       <span>
+        Khóa học trên Bkids
+       </span>
+      </a>
+     </li>
+     <li class="mb-4">
+      <a class="flex items-center text-gray-700" href="#">
+       <i class="fas fa-chalkboard-teacher mr-2">
+       </i>
+       <span>
+        Tài liệu giảng dạy
+       </span>
+      </a>
+     </li>
+     <li class="mb-4">
+      <a class="flex items-center text-gray-700" href="#">
+       <i class="fas fa-tasks mr-2">
+       </i>
+       <span>
+        Quản lý cuộc thi
+       </span>
+      </a>
+     </li>
+     <li class="mb-4">
+      <a class="flex items-center text-orange-500" href="#">
+       <i class="fas fa-folder-open mr-2">
+       </i>
+       <span>
+        Kho câu hỏi &amp; đề thi
+       </span>
+      </a>
+     </li>
+     <li class="mb-4">
+      <a class="flex items-center text-gray-700" href="#">
+       <i class="fas fa-folder mr-2">
+       </i>
+       <span>
+        Kho câu hỏi
+       </span>
+      </a>
+     </li>
+     <li class="mb-4">
+      <a class="flex items-center text-gray-700" href="#">
+       <i class="fas fa-graduation-cap mr-2">
+       </i>
+       <span>
+        Quản lý lớp học
+       </span>
+      </a>
+     </li>
+     <li class="mb-4">
+      <a class="flex items-center text-gray-700" href="#">
+       <i class="fas fa-cog mr-2">
+       </i>
+       <span>
+        Cài đặt
+       </span>
+      </a>
+     </li>
+     <li class="mb-4">
+      <a class="flex items-center text-gray-700" href="#">
+       <i class="fas fa-user mr-2">
+       </i>
+       <span>
+        Quyền hạn
+       </span>
+      </a>
+     </li>
+     <li class="mb-4">
+      <a class="flex items-center text-gray-700" href="#">
+       <i class="fas fa-user-circle mr-2">
+       </i>
+       <span>
+        Tài khoản
+       </span>
+      </a>
+     </li>
+    </ul>
+   </div>
+   <!-- Main Content -->
+   <div class="w-4/5 p-6">
+    <div class="flex justify-between items-center mb-4">
+     <div class="flex items-center">
+      <img alt="User Avatar" class="rounded-full mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/2GDqkCee9kk3ok3H9hjNAyrevUbnI3Oat3f15W6arFZHVacPB.jpg" width="40"/>
+      <div>
+       <p class="font-bold">
+        Nguyễn Thanh Thông
+       </p>
+       <p class="text-sm text-gray-500">
+        Giáo viên
+       </p>
+      </div>
+     </div>
+     <button class="bg-orange-500 text-white px-4 py-2 rounded">
+      Thêm
+     </button>
+    </div>
+    <div class="flex justify-between items-center mb-4">
+     <input class="border border-gray-300 rounded px-4 py-2 w-1/3" placeholder="Tìm kiếm" type="text"/>
+     <select class="border border-gray-300 rounded px-4 py-2">
+      <option>
+       Tất cả các danh mục
+      </option>
+     </select>
+    </div>
+    <table class="min-w-full bg-white">
+     <thead>
+      <tr>
+       <th class="py-2 px-4 border-b">
+        #
+       </th>
+       <th class="py-2 px-4 border-b">
+        Tên danh mục
+       </th>
+       <th class="py-2 px-4 border-b">
+        Khối lớp tham gia
+       </th>
+       <th class="py-2 px-4 border-b">
+        Số tuần
+       </th>
+       <th class="py-2 px-4 border-b">
+        Chia sẻ
+       </th>
+       <th class="py-2 px-4 border-b">
+        Hoạt động
+       </th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td class="py-2 px-4 border-b">
+        1
+       </td>
+       <td class="py-2 px-4 border-b">
+        Danh mục câu hỏi test
+       </td>
+       <td class="py-2 px-4 border-b">
+        Mầm non
+       </td>
+       <td class="py-2 px-4 border-b">
+        2
+       </td>
+       <td class="py-2 px-4 border-b text-green-500">
+        Toàn hệ thống
+       </td>
+       <td class="py-2 px-4 border-b">
+        <i class="fas fa-edit text-gray-500 mr-2">
+        </i>
+        <i class="fas fa-trash text-gray-500">
+        </i>
+       </td>
+      </tr>
+      <tr>
+       <td class="py-2 px-4 border-b">
+        2
+       </td>
+       <td class="py-2 px-4 border-b">
+        Danh mục câu hỏi test
+       </td>
+       <td class="py-2 px-4 border-b">
+        Lớp 1
+       </td>
+       <td class="py-2 px-4 border-b">
+        2
+       </td>
+       <td class="py-2 px-4 border-b text-red-500">
+        Không chia sẻ
+       </td>
+       <td class="py-2 px-4 border-b">
+        <i class="fas fa-edit text-gray-500 mr-2">
+        </i>
+        <i class="fas fa-trash text-gray-500">
+        </i>
+       </td>
+      </tr>
+      <tr>
+       <td class="py-2 px-4 border-b">
+        3
+       </td>
+       <td class="py-2 px-4 border-b">
+        Danh mục câu hỏi test
+       </td>
+       <td class="py-2 px-4 border-b">
+        Lớp 2
+       </td>
+       <td class="py-2 px-4 border-b">
+        2
+       </td>
+       <td class="py-2 px-4 border-b text-orange-500">
+        Chia sẻ
+       </td>
+       <td class="py-2 px-4 border-b">
+        <i class="fas fa-edit text-gray-500 mr-2">
+        </i>
+        <i class="fas fa-trash text-gray-500">
+        </i>
+       </td>
+      </tr>
+      <tr>
+       <td class="py-2 px-4 border-b">
+        4
+       </td>
+       <td class="py-2 px-4 border-b">
+        Danh mục câu hỏi test
+       </td>
+       <td class="py-2 px-4 border-b">
+        Mầm non
+       </td>
+       <td class="py-2 px-4 border-b">
+        2
+       </td>
+       <td class="py-2 px-4 border-b text-green-500">
+        Toàn hệ thống
+       </td>
+       <td class="py-2 px-4 border-b">
+        <i class="fas fa-edit text-gray-500 mr-2">
+        </i>
+        <i class="fas fa-trash text-gray-500">
+        </i>
+       </td>
+      </tr>
+      <tr>
+       <td class="py-2 px-4 border-b">
+        5
+       </td>
+       <td class="py-2 px-4 border-b">
+        Danh mục câu hỏi test
+       </td>
+       <td class="py-2 px-4 border-b">
+        Lớp 3
+       </td>
+       <td class="py-2 px-4 border-b">
+        2
+       </td>
+       <td class="py-2 px-4 border-b text-green-500">
+        Toàn hệ thống
+       </td>
+       <td class="py-2 px-4 border-b">
+        <i class="fas fa-edit text-gray-500 mr-2">
+        </i>
+        <i class="fas fa-trash text-gray-500">
+        </i>
+       </td>
+      </tr>
+      <tr>
+       <td class="py-2 px-4 border-b">
+        6
+       </td>
+       <td class="py-2 px-4 border-b">
+        Danh mục câu hỏi test
+       </td>
+       <td class="py-2 px-4 border-b">
+        Lớp 4
+       </td>
+       <td class="py-2 px-4 border-b">
+        2
+       </td>
+       <td class="py-2 px-4 border-b text-green-500">
+        Toàn hệ thống
+       </td>
+       <td class="py-2 px-4 border-b">
+        <i class="fas fa-edit text-gray-500 mr-2">
+        </i>
+        <i class="fas fa-trash text-gray-500">
+        </i>
+       </td>
+      </tr>
+      <tr>
+       <td class="py-2 px-4 border-b">
+        7
+       </td>
+       <td class="py-2 px-4 border-b">
+        Danh mục câu hỏi test
+       </td>
+       <td class="py-2 px-4 border-b">
+        Lớp 5
+       </td>
+       <td class="py-2 px-4 border-b">
+        2
+       </td>
+       <td class="py-2 px-4 border-b text-green-500">
+        Toàn hệ thống
+       </td>
+       <td class="py-2 px-4 border-b">
+        <i class="fas fa-edit text-gray-500 mr-2">
+        </i>
+        <i class="fas fa-trash text-gray-500">
+        </i>
+       </td>
+      </tr>
+     </tbody>
+    </table>
+    <div class="flex justify-between items-center mt-4">
+     <p class="text-gray-500">
+      Số mục trên trang: 7
+     </p>
+     <div class="flex items-center">
+      <button class="bg-gray-200 text-gray-500 px-2 py-1 rounded mr-2">
+       1
+      </button>
+      <button class="bg-gray-200 text-gray-500 px-2 py-1 rounded">
+       2
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

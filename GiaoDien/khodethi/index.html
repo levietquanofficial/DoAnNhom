@@ -1,0 +1,425 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Web Page
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <script>
+    // Function to handle adding an exam
+    function addExam() {
+        const examCategory = document.getElementById("exam-category")?.value || "";
+        const examTime = document.getElementById("exam-time")?.value || "";
+        const examStatus = document.getElementById("exam-status")?.value || "";
+
+        if (examCategory && examTime && examStatus) {
+            const examList = document.getElementById("exam-list");
+            if (examList) {
+                const newExam = document.createElement("div");
+                newExam.classList.add("bg-gray-100", "p-4", "rounded-lg", "exam-item");
+
+                newExam.innerHTML = `
+                  <h3 class="font-bold">${examCategory}</h3>
+                  <p class="text-sm">${examTime}</p>
+                  <p class="${examStatus === "Công khai" ? "text-green-500" : "text-red-500"}">${examStatus}</p>
+                `;
+
+                examList.appendChild(newExam);
+                alert("Đề thi đã được thêm!");
+            } else {
+                console.error("Element with ID 'exam-list' not found!");
+            }
+        } else {
+            alert("Vui lòng nhập đầy đủ thông tin!");
+        }
+    }
+
+    // Function to filter exams based on search input
+    function searchExams() {
+        const searchQuery = document.getElementById("search-exam")?.value.toLowerCase() || "";
+        const exams = document.querySelectorAll(".exam-item");
+
+        exams.forEach((exam) => {
+            const title = exam.querySelector("h3")?.textContent.toLowerCase() || "";
+            exam.style.display = title.includes(searchQuery) ? "block" : "none";
+        });
+    }
+
+    // Function to toggle the visibility of the "Account" section
+    function toggleAccountDetails() {
+        const accountDetails = document.getElementById("account-details");
+        if (accountDetails) {
+            accountDetails.classList.toggle("hidden");
+        } else {
+            console.error("Element with ID 'account-details' not found!");
+        }
+    }
+
+    // Event listeners for buttons
+    document.addEventListener("DOMContentLoaded", () => {
+        const addExamBtn = document.getElementById("add-exam-btn");
+        const searchExamBtn = document.getElementById("search-exam-btn");
+        const toggleAccountBtn = document.getElementById("toggle-account-btn");
+
+        if (addExamBtn) addExamBtn.addEventListener("click", addExam);
+        if (searchExamBtn) searchExamBtn.addEventListener("click", searchExams);
+        if (toggleAccountBtn) toggleAccountBtn.addEventListener("click", toggleAccountDetails);
+    });
+</script>
+
+  
+ <body class="bg-gray-100 font-sans">
+  <div class="flex">
+   <!-- Sidebar -->
+   <div class="w-1/5 bg-white h-screen p-4">
+    <div class="flex items-center mb-6">
+     <img alt="Logo" class="mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/JYcUT8srlRIEHZI74B9Pp9M2cNZGVQhuAt1nblltHL2eXM8JA.jpg" width="40"/>
+     <span class="font-bold text-lg">
+      Center
+     </span>
+    </div>
+    <ul class="space-y-4">
+     <li class="flex items-center text-orange-500">
+      <i class="fas fa-home mr-2">
+      </i>
+      <span>
+       Trang chủ
+      </span>
+     </li>
+     <li class="flex items-center">
+      <i class="fas fa-book mr-2">
+      </i>
+      <span>
+       Khóa học Online
+      </span>
+     </li>
+     <li class="flex items-center">
+      <i class="fas fa-chalkboard-teacher mr-2">
+      </i>
+      <span>
+       Học trực tuyến
+      </span>
+     </li>
+     <li class="flex items-center">
+      <i class="fas fa-globe mr-2">
+      </i>
+      <span>
+       Đề thi quốc tế
+      </span>
+     </li>
+     <li class="flex items-center text-orange-500">
+      <i class="fas fa-file-alt mr-2">
+      </i>
+      <span>
+       Kho Đề thi
+      </span>
+     </li>
+     <li class="flex items-center">
+      <i class="fas fa-book-open mr-2">
+      </i>
+      <span>
+       Khóa học
+      </span>
+     </li>
+     <li class="flex items-center">
+      <i class="fas fa-graduation-cap mr-2">
+      </i>
+      <span>
+       Đăng ký học
+      </span>
+     </li>
+     <li class="flex items-center">
+      <i class="fas fa-user mr-2">
+      </i>
+      <span>
+       Tài khoản
+      </span>
+     </li>
+    </ul>
+   </div>
+   <!-- Main Content -->
+   <div class="w-4/5 p-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+     <div class="flex items-center">
+      <img alt="Logo" class="mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/JYcUT8srlRIEHZI74B9Pp9M2cNZGVQhuAt1nblltHL2eXM8JA.jpg" width="40"/>
+      <span class="font-bold text-lg">
+       Center
+      </span>
+     </div>
+     <div class="flex items-center">
+      <img alt="User Avatar" class="rounded-full mr-2" height="40" src="https://storage.googleapis.com/a1aa/image/eMrxj6n4azxtTyBkpXW9AuNKDlc7XTax0S3CfZUeCEx5fihPB.jpg" width="40"/>
+      <span>
+       Nguyễn Thanh Thông
+      </span>
+     </div>
+    </div>
+    <!-- Main Section -->
+    <div class="bg-white p-6 rounded-lg shadow">
+     <!-- Top Section -->
+     <div class="mb-6">
+      <h2 class="font-bold text-lg mb-4">
+       Đề thi gần đây
+      </h2>
+      <div class="grid grid-cols-4 gap-4">
+       <div class="bg-gray-100 p-4 rounded-lg">
+        <h3 class="font-bold">
+         Danh mục đề thi 1
+        </h3>
+        <p class="text-sm">
+         7:00 - 9:00
+        </p>
+        <p class="text-green-500">
+         Công khai
+        </p>
+       </div>
+       <div class="bg-gray-100 p-4 rounded-lg">
+        <h3 class="font-bold">
+         Đề thi toán lớp 2
+        </h3>
+        <p class="text-sm">
+         7:00 - 9:00
+        </p>
+        <p class="text-gray-500">
+         Đã kết thúc
+        </p>
+       </div>
+       <div class="bg-gray-100 p-4 rounded-lg">
+        <h3 class="font-bold">
+         Danh mục đề thi 1
+        </h3>
+        <p class="text-sm">
+         7:00 - 9:00
+        </p>
+        <p class="text-green-500">
+         Công khai
+        </p>
+       </div>
+       <div class="bg-gray-100 p-4 rounded-lg">
+        <h3 class="font-bold">
+         Đề thi toán lớp 3
+        </h3>
+        <p class="text-sm">
+         7:00 - 9:00
+        </p>
+        <p class="text-gray-500">
+         Đã kết thúc
+        </p>
+       </div>
+      </div>
+     </div>
+     <!-- Middle Section -->
+     <div class="mb-6">
+      <h2 class="font-bold text-lg mb-4">
+       Danh mục đề thi
+      </h2>
+      <div class="flex items-center mb-4">
+       <input class="border p-2 rounded-lg flex-grow mr-4" placeholder="Tìm kiếm" type="text"/>
+       <button class="bg-orange-500 text-white p-2 rounded-lg">
+        Thêm
+       </button>
+      </div>
+      <div class="grid grid-cols-4 gap-4">
+       <div class="bg-gray-100 p-4 rounded-lg">
+        <h3 class="font-bold">
+         Danh mục đề thi 1
+        </h3>
+        <p class="text-sm">
+         7:00 - 9:00
+        </p>
+        <p class="text-green-500">
+         Công khai
+        </p>
+       </div>
+       <div class="bg-gray-100 p-4 rounded-lg">
+        <h3 class="font-bold">
+         Danh mục đề thi 1
+        </h3>
+        <p class="text-sm">
+         7:00 - 9:00
+        </p>
+        <p class="text-green-500">
+         Công khai
+        </p>
+       </div>
+       <div class="bg-gray-100 p-4 rounded-lg">
+        <h3 class="font-bold">
+         Danh mục đề thi 1
+        </h3>
+        <p class="text-sm">
+         7:00 - 9:00
+        </p>
+        <p class="text-green-500">
+         Công khai
+        </p>
+       </div>
+       <div class="bg-gray-100 p-4 rounded-lg">
+        <h3 class="font-bold">
+         Danh mục đề thi 1
+        </h3>
+        <p class="text-sm">
+         7:00 - 9:00
+        </p>
+        <p class="text-red-500">
+         Riêng tư
+        </p>
+       </div>
+      </div>
+     </div>
+     <!-- Bottom Section -->
+     <div>
+      <div class="flex items-center mb-4">
+       <button class="bg-orange-500 text-white p-2 rounded-lg mr-4">
+        Chỉnh sửa đề thi
+       </button>
+       <button class="bg-gray-200 p-2 rounded-lg">
+        Xóa đề thi
+       </button>
+      </div>
+      <div class="bg-gray-100 p-4 rounded-lg mb-4">
+       <h3 class="font-bold mb-2">
+        Ôn thi cuối kỳ Nâng Cao cho Phụ Huynh yêu cầu.
+       </h3>
+       <div class="flex items-center">
+        <input class="border p-2 rounded-lg flex-grow mr-4" placeholder="Nhập tên học sinh" type="text"/>
+        <button class="bg-orange-500 text-white p-2 rounded-lg">
+         Tìm kiếm
+        </button>
+       </div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow">
+       <div class="flex justify-between items-center mb-4">
+        <h3 class="font-bold">
+         Nhập tài khoản
+        </h3>   
+        <div class="flex items-center">
+         <button class="bg-gray-200 p-2 rounded-lg mr-2">
+          Hủy
+         </button>
+         <button class="bg-orange-500 text-white p-2 rounded-lg">
+          Lưu
+         </button>
+        </div>
+       </div>
+       <div class="grid grid-cols-2 gap-4">
+        <div>
+         <h4 class="font-bold mb-2">
+          Tên tài khoản
+         </h4>
+         <ul class="space-y-2">
+          <li class="flex items-center">
+           <i class="fas fa-user mr-2">
+           </i>
+           <span>
+            Nguyễn Ngọc Anh
+           </span>
+          </li>
+          <li class="flex items-center">
+           <i class="fas fa-user mr-2">
+           </i>
+           <span>
+            Nguyễn Thanh Thông
+           </span>
+          </li>
+          <li class="flex items-center">
+           <i class="fas fa-user mr-2">
+           </i>
+           <span>
+            Nguyễn Thanh Thông
+           </span>
+          </li>
+          <li class="flex items-center">
+           <i class="fas fa-user mr-2">
+           </i>
+           <span>
+            Nguyễn Thanh Thông
+           </span>
+          </li>
+          <li class="flex items-center">
+           <i class="fas fa-user mr-2">
+           </i>
+           <span>
+            Nguyễn Thanh Thông
+           </span>
+          </li>
+         </ul>
+        </div>
+        <div>
+         <h4 class="font-bold mb-2">
+          Chi tiết
+         </h4>
+         <ul class="space-y-2">
+          <li class="flex items-center justify-between">
+           <span>
+            nguyen1@gmail.com
+           </span>
+           <div class="flex items-center">
+            <span>
+             Nguyễn Thanh Thông
+            </span>
+            <i class="fas fa-edit ml-2">
+            </i>
+           </div>
+          </li>
+          <li class="flex items-center justify-between">
+           <span>
+            nguyen2@gmail.com
+           </span>
+           <div class="flex items-center">
+            <span>
+             Nguyễn Thanh Thông
+            </span>
+            <i class="fas fa-edit ml-2">
+            </i>
+           </div>
+          </li>
+          <li class="flex items-center justify-between">
+           <span>
+            nguyen3@gmail.com
+           </span>
+           <div class="flex items-center">
+            <span>
+             Nguyễn Thanh Thông
+            </span>
+            <i class="fas fa-edit ml-2">
+            </i>
+           </div>
+          </li>
+          <li class="flex items-center justify-between">
+           <span>
+            nguyen4@gmail.com
+           </span>
+           <div class="flex items-center">
+            <span>
+             Nguyễn Thanh Thông
+            </span>
+            <i class="fas fa-edit ml-2">
+            </i>
+           </div>
+          </li>
+          <li class="flex items-center justify-between">
+           <span>
+            nguyen5@gmail.com
+           </span>
+           <div class="flex items-center">
+            <span>
+             Nguyễn Thanh Thông
+            </span>
+            <i class="fas fa-edit ml-2">
+            </i>
+           </div>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
